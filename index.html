@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header><button onclick="openForm()">Add New Book</button>
+            
+    </header>
+    <container>       
+         <div class="form-popup" id="myForm">
+            <form class="form-container" action="file:///home/serge/repos/MyLibrary/index.html" method="post">
+              <label for="name"><b>Book Name</b></label>
+              <input type="text" id="bname" placeholder="Wheel of Time" name="book" required>
+          
+              <label for="author"><b>Author</b></label>
+              <input type="author" id="author" placeholder="Robert Jordan" name="author" required>
+
+              <label for="pages"><b># of Pages</b></label>
+              <input type="pages" id="pages" placeholder="#" name="pages">
+
+              <input type="checkbox" id="readstat" name="readstat" value="Yes">
+              <label for="readstat"> Finished reading?</label><br>
+          
+              <button type ='button' id="addb" onclick="closeForm()">Add to Library</button>
+              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+
+
+            
+         </div>
+    </container>
+    <footer>
+    </footer>   
+
+
+<script>
+let myLibrary = [];
+
+const addb = document.querySelector('#addb');
+
+addb.addEventListener('click', function(e){
+const  bnameinp = document.querySelector('#bname').value;
+const  bauth = document.querySelector('#author').value;
+const  pgno = document.querySelector('#pages').value;
+const  read = document.querySelector('#readstat').value;
+addBook(bnameinp,bauth,pgno,read);
+});
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
+
+function Book(name,author,pages,readstatus){
+    this.name = name;
+    this.author = author;
+    this.pages = pages;
+    this.readstatus = readstatus;
+
+    myLibrary.push(this);
+}
+
+function addBook(name,author,pages,readstatus){
+
+
+    new Book(name,author,pages,readstatus);
+}
+
+</script>
+</body>
+</html>

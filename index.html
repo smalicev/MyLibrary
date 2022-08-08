@@ -40,6 +40,15 @@
 
 <script>
 let myLibrary = [];
+const content = document.querySelector('container');
+
+
+
+function append(item){
+  const bookcard = document.createElement('div');
+  bookcard.innerText = item.name + item.author + item.pages + item.readstatus;
+  content.appendChild(bookcard);
+}
 
 const addb = document.querySelector('#addb');
 
@@ -67,11 +76,10 @@ function Book(name,author,pages,readstatus){
     this.readstatus = readstatus;
 
     myLibrary.push(this);
+    append(this);
 }
 
 function addBook(name,author,pages,readstatus){
-
-
     new Book(name,author,pages,readstatus);
 }
 

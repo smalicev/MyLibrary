@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header><button onclick="openForm()">Add New Book</button>
+    <header><button id='addbtn' onclick="openForm()">Add New Book</button>
             
     </header>
     <container>       
@@ -22,10 +22,10 @@
 
               <label for="pages"><b># of Pages</b></label>
               <input type="pages" id="pages" placeholder="#" name="pages">
-
-              <input type="checkbox" id="readstat" name="readstat" value="Yes">
-              <label for="readstat"> Finished reading?</label><br>
-          
+              <div id ='cbox'>
+                  <input type="checkbox" id="readstat" name="readstat" value="Yes">
+                  <label for="readstat"> Finished reading?</label><br>
+              </div>
               <button type ='button' id="addb" onclick="closeForm()">Add to Library</button>
               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
             </form>

@@ -9,25 +9,27 @@
 </head>
 <body>
     <header><button id='addbtn' onclick="openForm()">Add New Book</button>
+
+      <h1>Your Library</h1>
             
     </header>
     <container>       
          <div class="form-popup" id="myForm">
-            <form class="form-container" action="file:///home/serge/repos/MyLibrary/index.html" method="post">
-              <label for="name"><b>Book Name</b></label>
+            <form id ='mainform' class="form-container" action="file:///home/serge/repos/MyLibrary/index.html" method="post">
+              <label for="name"><b><br>Book Name</b></label>
               <input type="text" id="bname" placeholder="Wheel of Time" name="book" required>
           
-              <label for="author"><b>Author</b></label>
+              <label for="author"><b><br>Author</b></label>
               <input type="author" id="author" placeholder="Robert Jordan" name="author" required>
 
-              <label for="pages"><b># of Pages</b></label>
+              <label for="pages"><b><br># of Pages</b></label>
               <input type="pages" id="pages" placeholder="#" name="pages">
               <div id ='cbox'>
                   <input type="checkbox" id="readstat" name="readstat" value="Yes">
                   <label for="readstat"> Finished reading?</label><br>
               </div>
               <button type ='button' id="addb" onclick="closeForm()">Add to Library</button>
-              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+              <button type="button" class="btn cancel" onclick="closeForm()">X</button>
             </form>
 
 
@@ -46,7 +48,20 @@ const content = document.querySelector('container');
 
 function append(item){
   const bookcard = document.createElement('div');
-  bookcard.innerText = item.name + item.author + item.pages + item.readstatus;
+  const bookcardname = document.createElement('div');
+  const bookcardauthor = document.createElement('div');
+  const bookcardpages = document.createElement('div');
+  const bookcardreadstatus = document.createElement('div');
+  bookcardname.innerText = item.name;
+  bookcardauthor.innerText = 'by ' + item.author;
+  bookcardpages.innerText =  item.pages + ' pages';
+  bookcardreadstatus.innerText = item.readstatus;
+  bookcard.appendChild(bookcardname)
+  bookcard.appendChild(bookcardauthor)
+  bookcard.appendChild(bookcardpages)
+  bookcard.appendChild(bookcardreadstatus)
+  bookcardname.classList.add('bname');
+  bookcard.classList.add("libcard");
   content.appendChild(bookcard);
 }
 
@@ -58,6 +73,7 @@ const  bauth = document.querySelector('#author').value;
 const  pgno = document.querySelector('#pages').value;
 const  read = document.querySelector('#readstat').value;
 addBook(bnameinp,bauth,pgno,read);
+document.getElementById("mainform").reset();
 });
 
 function openForm() {

@@ -15,32 +15,63 @@ header{
     width:100%;
     height:33%;
     display:flex;
+    justify-content: space-evenly;
     align-items: center;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.164), -5px 3px 5px rgba(0, 0, 0, 0.164);
     font-size: 1.25rem;
 
 }
 
+.bname{
+    font-style:italic;
+    text-decoration: underline;
+    max-width: 160px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    max-height: 80px;
+    white-space: nowrap;
+}
+
+
+.bname:hover{
+overflow: overlay; 
+height: 2em;
+width: 10em;
+background: whitesmoke;
+}
+
+
+.libcard{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    border: 3px solid rgba(250, 233, 233, 0.74);
+    border-radius: 25px;
+    height: auto;
+    padding:10px;
+    background-color:rgb(250, 156, 171);
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.libcard * {
+    background-color: whitesmoke;
+    padding:7px;
+    border: 1px solid whitesmoke;
+    border-radius: 12px;
+    display:block;
+    text-align: center;
+
+
+}
 
 
 body{
     margin:0px;
     height: 100vh;
     width: 100%;
-}
-
-
-.bckimage{
-    background-image:url('eberhard-grossgasteiger-3uFxLmBTHN4-unsplash.jpg');
-    background-position: center;
-    background-repeat:no-repeat;
-    background-size: cover;
-    width: 700px;
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    opacity: 0.90;
 }
 
 input{
@@ -88,26 +119,23 @@ leftside{
 
 }
 
-container{
+container {
     position:relative;
     z-index: 0;
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 45%;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    grid-template-rows: repeat(auto-fit, 250px) ;
+    column-gap: 10px;   
+    row-gap: 15px;
+    height: 65%;
     padding-left: 40px;
     width: 100%;
     background-color:rgb(250, 231, 225);
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.164), 0px -3px 5px rgba(0, 0, 0, 0.164), -5px 3px 5px rgba(0, 0, 0, 0.164);
+    box-shadow: 0px 3px 5px rgba(43, 33, 33, 0.164), 0px -3px 5px rgba(0, 0, 0, 0.164), -5px 3px 5px rgba(0, 0, 0, 0.164);
     font-size:1.5rem;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
-
-controw1, controw2, controw3{
-    display:flex;
-    width:575px;
-    justify-content: space-between;
-}
-
 
 footer{
     position:relative;
@@ -122,13 +150,8 @@ footer{
 }
 
 label{
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     font-size: 1rem;
-}
-
-myform{
-    display:flex;
-    flex-direction:column;
 }
 
 form{
@@ -143,8 +166,8 @@ button {
     font-size: 1.5rem;
     padding: 12px; 
     border-radius: 15px;
-    border: 4px solid rgb(255, 240, 221);
-    color:white;
+    border: 1px solid rgba(245, 245, 245, 0);
+    color:rgba(31, 31, 31, 0.849);
     position:relative;
     z-index: 1;
 }
@@ -169,7 +192,7 @@ img{
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
     background-color: #555;
-    color: white;
+    color:rgba(31, 31, 31, 0.849);
     padding: 16px 20px;
     border: none;
     cursor: pointer;
@@ -193,8 +216,11 @@ img{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border: 3px solid #f1f1f1;
+    background-color: whitesmoke;
+    border: 3px solid whitesmoke;
+    border-radius: 15px;
     z-index: 9;
+    padding: 10px;
   }
   
   /* Add styles to the form container */
@@ -204,8 +230,9 @@ img{
     justify-content: space-between;
     align-items: center;
     max-width: 500px;
+    height: 425px;
     padding: 15px;
-    background-color: white;
+    background-color: whitesmoke;
   }
   
 
@@ -225,6 +252,15 @@ img{
   /* Add a red background color to the cancel button */
   .form-container .cancel {
     background-color: rgb(255, 0, 106);
+    position: relative;
+    top:-405px;
+    right:-130px;
+    height:30px;
+    width: 30px;
+    padding:0px;
+    text-align:center;
+    border-radius:10px;
+    font-size:smaller;
   }
   
   /* Add some hover effects to buttons */

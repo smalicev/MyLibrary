@@ -22,22 +22,27 @@ header{
 
 }
 
+
+
+
+
 .bname{
     font-style:italic;
     text-decoration: underline;
     max-width: 160px;
     overflow:hidden;
     text-overflow: ellipsis;
-    max-height: 80px;
+    max-height: 105px;
     white-space: nowrap;
 }
 
 
 .bname:hover{
-overflow: overlay; 
-height: 2em;
+overflow: auto; 
+height: 45px;
 width: 10em;
 background: whitesmoke;
+text-overflow:unset;
 }
 
 
@@ -68,6 +73,15 @@ background: whitesmoke;
 }
 
 
+.bookcardreadstatus{
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width:80px;
+}
+
+
 body{
     margin:0px;
     height: 100vh;
@@ -95,18 +109,7 @@ content{
     width:100%;
 }
 
-rightside{
-    display:flex;
-    flex-direction: column;
-    width:100%;
-}
 
-leftside{
-
-    display:flex;
-    position:relative;
-    z-index: -4;
-}
 
 .banner {
     margin:150px;
@@ -235,8 +238,6 @@ img{
     background-color: whitesmoke;
   }
   
-
-  
   /* Set a style for the submit/login button */
   .form-container .btn {
     background-color: #04AA6D;
@@ -273,6 +274,14 @@ img{
   }
 
 
- #addb:hover, #addbtn:hover{
+ #addb:hover, #addbtn:hover, .revbtn:hover{
     opacity: 0.8; 
   }
+
+  .revbtn{
+    height:40px;
+    font-size: 1rem;
+    font-weight: 1000;
+    background-color:rgba(247, 65, 104, 0.952);
+    border: 0px;
+}

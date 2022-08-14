@@ -25,7 +25,8 @@
               <label for="pages"><b><br># of Pages</b></label>
               <input type="pages" id="pages" placeholder="#" name="pages">
               <div id ='cbox'>
-                  <input type="checkbox" id="readstat" name="readstat" value="Yes">
+                  <input type="hidden" name="readstat" value="no">
+                  <input type="checkbox" id="readstat" name="readstat" value="yes">
                   <label for="readstat"> Finished reading?</label><br>
               </div>
               <button type ='button' id="addb" onclick="closeForm()">Add to Library</button>
@@ -44,34 +45,76 @@
 let myLibrary = [];
 const content = document.querySelector('container');
 
-
-
-function append(item){
+function append(item, libind){
   const bookcard = document.createElement('div');
   const bookcardname = document.createElement('div');
   const bookcardauthor = document.createElement('div');
   const bookcardpages = document.createElement('div');
   const bookcardreadstatus = document.createElement('div');
+  const bookcardreadstatusinp = document.createElement('input');
+  const bookcardreadstatuslabel = document.createElement('span');
+
+
+  bookcardreadstatusinp.setAttribute('type','checkbox');
+  bookcardreadstatusinp.setAttribute('name','readstatuser');
+  bookcardreadstatuslabel.innerText = 'Read';
+  bookcardreadstatus.appendChild(bookcardreadstatuslabel);
+  bookcardreadstatus.appendChild(bookcardreadstatusinp);
+
+  var checkBox = document.getElementById("readstat");
+
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    bookcardreadstatusinp.checked = true;
+  } else {
+    bookcardreadstatusinp.checked = false;
+  }
+
+  const bookcardremove = document.createElement('button');
+
   bookcardname.innerText = item.name;
   bookcardauthor.innerText = 'by ' + item.author;
   bookcardpages.innerText =  item.pages + ' pages';
-  bookcardreadstatus.innerText = item.readstatus;
-  bookcard.appendChild(bookcardname)
-  bookcard.appendChild(bookcardauthor)
-  bookcard.appendChild(bookcardpages)
-  bookcard.appendChild(bookcardreadstatus)
+  bookcardremove.innerText = 'Remove';
+  bookcardremove.value = libind;
+
+  bookcard.appendChild(bookcardname);
+  bookcard.appendChild(bookcardauthor);
+  bookcard.appendChild(bookcardpages);
+  bookcard.appendChild(bookcardreadstatus);
+  bookcard.appendChild(bookcardremove);
   bookcardname.classList.add('bname');
+  bookcardreadstatus.classList.add('bookcardreadstatus');
+  bookcardremove.classList.add('revbtn');
   bookcard.classList.add("libcard");
   content.appendChild(bookcard);
+
+const revb = document.querySelectorAll('.revbtn');
+revb.forEach(function(revbtn){
+  revbtn.addEventListener('click', function(e){
+  myLibrary.splice(bookcardremove.value,1);
+  deleteNode(revbtn);
+  })});
+
+  
+
 }
 
+function deleteNode(item){
+    item.parentNode.remove()
+}
+
+
 const addb = document.querySelector('#addb');
+
+
+
 
 addb.addEventListener('click', function(e){
 const  bnameinp = document.querySelector('#bname').value;
 const  bauth = document.querySelector('#author').value;
 const  pgno = document.querySelector('#pages').value;
-const  read = document.querySelector('#readstat').value;
+const  read = document.querySelector('[name="readstat"]').value;
 addBook(bnameinp,bauth,pgno,read);
 document.getElementById("mainform").reset();
 });
@@ -92,7 +135,8 @@ function Book(name,author,pages,readstatus){
     this.readstatus = readstatus;
 
     myLibrary.push(this);
-    append(this);
+    libind = myLibrary.indexOf(this);
+    append(this, libind);
 }
 
 function addBook(name,author,pages,readstatus){
